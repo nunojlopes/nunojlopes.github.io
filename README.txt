@@ -1,4 +1,4 @@
-Learning Voyage
+Learning Vouyage
 
 Credits:
 	Template:
