@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<!--
+	Solid State by HTML5 UP	html5up.net | @ajlkn	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)-->
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <title>Nuno Lopes-Data Analyst</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <noscript><link rel="stylesheet" href="assets/css/noscript.css"></noscript>
+  </head>
+  <body class="is-preload">
+    <!-- Page Wrapper -->
+    <div id="page-wrapper">
+      <!-- Header -->
+      <header id="header">
+        <h1><a href="index.html">Nuno Lopes</a></h1>
+        <nav> <a href="#menu">Menu</a> </nav>
+      </header>
+      <!-- Menu -->
+      <nav id="menu">
+        <div class="inner">
+          <h2>Menu</h2>
+          <ul class="links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="projects.html">projects</a></li>
+            <li><a href="about.html">about</a></li>
+          </ul>
+          <a href="#" class="close">Close</a> </div>
+      </nav>
+      <!-- Wrapper -->
+      <section id="wrapper">
+        <header>
+          <div class="inner">
+            <h2>Sales Management project</h2>
+            <p>TRANSACT-sql data cleanse, Data modeling and Power-BI Dashboard
+              construction </p>
+          </div>
+        </header>
+        <!-- Title pictures -->
+        <section>
+          <div class="wrapper">
+            <div class="inner">
+              <h3 class="major">power-bi sales management dashboard</h3>
+              <div class="box alt">
+                <div class="row gtr-uniform">
+                  <div class="col-12"><span class="image fit"><img src="images/aw_1.jpg"
+                        alt=""></span></div>
+                  <div class="col-4"><span class="image fit"><img src="images/aw_2.jpg"
+                        alt=""></span></div>
+                  <div class="col-4"><span class="image fit"><img src="images/aw_3.jpg"
+                        alt=""></span></div>
+                  <div class="col-4"><span class="image fit"><img src="images/aw_4.jpg"
+                        alt=""></span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- Content -->
+        <div class="wrapper">
+          <div class="inner">
+            <h3 class="major">Business Request and User Stories</h3>
+            <p>The business request for this project was to prepare a sales
+              report for sales managers and sales representatives. Based on the
+              request the necessary user stories were defined that must be
+              followed to ensure the project delivery accordingly to the
+              acceptance criteria that were set and maintained throughout the
+              project. We have to ensure that the relevant KPI’s are present and
+              that we have the relevant answer.</p>
+            <h4>user stories</h4>
+            <div class="table-wrapper">
+              <table>
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>As a (role)</th>
+                    <th>I want (request / demand)</th>
+                    <th>So that I (user value)</th>
+                    <th>Acceptance Criteria</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td>Sales Manager</td>
+                    <td>A Dashboard overview of internet sales</td>
+                    <td>Can follow which customers and products sells the best</td>
+                    <td>A Power BI dashboard which updates data once a day</td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td>Sales Representative</td>
+                    <td>A detailed overview of Internet Sales per Customers</td>
+                    <td>Can follow up my customers that buys the most and who we
+                      can sell more to</td>
+                    <td>A Power BI dashboard which allows me to filter data for
+                      each customer</td>
+                  </tr>
+                  <tr>
+                    <td>3</td>
+                    <td>Sales Representative</td>
+                    <td>A detailed overview of Internet Sales per Products</td>
+                    <td>Can follow up my Products that sells the most</td>
+                    <td>A Power BI dashboard which allows me to filter data for
+                      each Product</td>
+                  </tr>
+                  <tr>
+                    <td>4</td>
+                    <td>Sales Manager</td>
+                    <td>A Dashboard overview of internet sales</td>
+                    <td>Follow sales over time against budget</td>
+                    <td>A Power Bi dashboard with graphs and KPI's comparing
+                      against budget</td>
+                  </tr>
+                </tbody>
+                <tfoot>
+                </tfoot>
+              </table>
+            </div>
+            <h3 class="major">Data Cleansing and Transformation</h3>
+            <p>The required information is on the AdventureWorks database on <b>SQL
+                Server</b> and to proceed with our business request and user
+              stories we had to extract this information using <b>Transact SQL</b>
+              (T-SQL).</p>
+            <p>An additional data source was required (sales budgets) in order
+              to present one of our KPI's. This was supplied as an excel file
+              and added to our model at a later point. </p>
+            <p>We have selected the tables with the required information and
+              proceed to select and clean the information we require. The
+              cleaning was done using <b>Azure Data Studio</b> within a
+              notebook. </p>
+            <h4>Azure data studio</h4>
+            <div class="box alt">
+              <div class="row gtr-uniform">
+                <div class="col-12"><span class="image fit"><img src="images/aw_3.jpg"
+                      alt=""></span></div>
+                <p> </p>
+              </div>
+              <h3 class="major">Code</h3>
+              <p>See below the SQL statements used for cleansing and
+                transforming the data exported from the notebook.</p>
+              <h4>TRANSACT SQL</h4>
+              <pre><code>--Cleansed DIM_Date table
+SELECT
+        [DateKey]
+      , [FullDateAlternateKey] AS [Date]
+      , [EnglishDayNameOfWeek] AS [Day]
+      , [WeekNumberOfYear] AS [WeekNo]
+      , [EnglishMonthName] AS [Month]
+      , LEFT([EnglishMonthName], 3) AS [MonthShort]      
+      , [MonthNumberOfYear] AS [MonthNo]
+      , [CalendarQuarter] AS [Quarter]
+      , [CalendarYear] AS [Year]
+
+  FROM [dbo].[DimDate]
+  WHERE [CalendarYear] &gt;= 2019
+
+--Cleansed DIM_Customer table
+SELECT
+        c.[CustomerKey] AS [CustomerKey]
+      , c.[FirstName] AS [First Name]
+      , c.[LastName] AS [Last Name]
+      , c.[FirstName] + ' ' + c.[LastName] AS [Full Name]
+      , CASE c.[Gender]
+            WHEN 'M' THEN 'Male' 
+            WHEN 'F' THEN 'Female'
+        END AS [Gender]
+      , c.[DateFirstPurchase]
+      , g.[City] AS [Customer City] -- Joined City from DimGeography table
+      , g.[EnglishCountryRegionName] AS [Customer Country] --Joined Country from DimGeography table
+
+  FROM  [dbo].[DimCustomer] AS c
+    LEFT JOIN [dbo].[DimGeography] AS g
+        ON c.[GeographyKey] = g.[GeographyKey]
+  ORDER BY c.[CustomerKey] ASC -- Output ordered by CustumerKey
+
+--Cleansed DIM_Product table
+SELECT 
+        p.[ProductKey]
+      , p.[ProductAlternateKey] AS [ProductItemCode]
+      , p.[EnglishProductName] AS [Product Name]
+      , ps.[EnglishProductSubcategoryName] AS [Product Sub Category]
+      , pc.[EnglishProductCategoryName] AS [Product Category]
+      , p.[Color] AS [Product Color]
+      , p.[Size] AS [Product Size]
+      , p.[ProductLine] AS [Product Line]
+      , p.[ModelName] AS [Product Model Name]
+      , p.[EnglishDescription] AS [Product Description]
+      , ISNULL(p.[Status], 'Outdated') AS [Product Status]
+
+  FROM [dbo].[DimProduct] AS p
+    LEFT JOIN [dbo].[DimProductSubCategory] AS ps
+        ON p.[ProductSubcategoryKey] = ps.[ProductSubcategoryKey]
+     LEFT JOIN [dbo].[DimProductCategory] as pc
+        ON ps.[ProductCategoryKey] = pc.[ProductCategoryKey]
+  ORDER BY p.[ProductKey] ASC
+
+--Cleansed FACT_InternetSales table
+SELECT
+        [ProductKey]
+      , [OrderDateKey]
+      , [DueDateKey]
+      , [ShipDateKey]
+      , [CustomerKey]
+      , [SalesOrderNumber]
+      , [SalesAmount] AS [Sales Amount]
+
+  FROM [dbo].[FactInternetSales]
+    WHERE LEFT([OrderDateKey], 4) &gt;= YEAR(GETDATE()) - 2 -- We will get sales for the last 2 years, taking into to account the current date for extraction
+  ORDER BY [OrderDateKey] ASC</code></pre>
+              <h3 class="major">Data Model</h3>
+              <p>Once the data was cleaned and transformed, it was exported to
+                Excel files, which were subsequently loaded into Power BI.</p>
+              <p>Once in Power BI, the data model was prepared and the tables
+                were connected. We can also see how the sales budget mentioned
+                earlier (FACT_Budget) connect with our data model.</p>
+              <h4>Data Model</h4>
+              <div class="box alt"><span class="image fit"><img src="images/aw_2.jpg"
+                    alt=""></span></div>
+              <p> </p>
+            </div>
+            <h3 class="major">Sales Management Dashboard</h3>
+            <p>The dashboard is comprised of three pages.</p>
+            <h4>Dashboard</h4>
+            <ol>
+              <li>Sales Overview.</li>
+              <li>Customer Details.</li>
+              <li>Products Details.</li>
+            </ol>
+            <p>The Sales overview provides us with a general view where we can
+              see our Sales vs Budget along with the best customers and most
+              sold products. The other pages provide more details regarding
+              customers and products. All the results can be filtered by year,
+              month, customer city, product name, product category and
+              subcategory.</p>
+            <h4>Sales Overview</h4>
+            <div class="box alt"><span class="image fit"><img src="images/aw_1.jpg"
+                  alt=""></span></div>
+            <p> </p>
+            <h4>Customer Details</h4>
+            <div class="box alt"><span class="image fit"><img src="images/aw_4.jpg"
+                  alt=""></span></div>
+            <p> </p>
+            <h4>Products Details</h4>
+            <div class="box alt"><span class="image fit"><img src="images/aw_5.jpg"
+                  alt=""></span></div>
+            <p> </p>
+            <h3 class="major">Other projects</h3>
+            <section class="features">
+              <article> <a href="#" class="image"><img src="images/de1_1.jpg" alt=""></a>
+                <h3 class="major">ETL project with python pandas</h3>
+                <a href="project_de1.html" class="special">Learn more</a> </article>
+              <article> <a href="#" class="image"><img src="images/sql_1.jpg" alt=""></a>
+                <h3 class="major">Exploratory data Analysis with T-SQL</h3>
+                <a href="project_da2.html" class="special">Learn more</a> </article>
+            </section>
+          </div>
+          <!-- Footer -->
+          <section id="footer">
+            <div class="inner">
+              <h2 class="major">Contacts</h2>
+              <ul class="contact">
+                <li class="icon solid fa-home"> Lisbon</li>
+                <li class="icon solid fa-phone">(351) 965-565-5351</li>
+                <li class="icon solid fa-envelope"><a href="mailto:nuno.j.lopes@outlook.com">nuno.j.lopes@outlook.com</a></li>
+                <li class="icon brands fa-github"><a href="#">guithub</a></li>
+                <li class="icon brands fa-facebook-f"><a href="https://www.facebook.com/nuno.lopes.520562">facebook.com/nuno.lopes.520562</a></li>
+              </ul>
+              <ul class="copyright">
+                <li>© Nuno Lopes. All rights reserved.</li>
+                <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+              </ul>
+            </div>
+          </section>
+          <!-- Scripts -->
+          <script src="assets/js/jquery.min.js"></script>
+          <script src="assets/js/jquery.scrollex.min.js"></script>
+          <script src="assets/js/browser.min.js"></script>
+          <script src="assets/js/breakpoints.min.js"></script>
+          <script src="assets/js/util.js"></script>
+          <script src="assets/js/main.js"></script> </div>
+      </section>
+    </div>
+  </body>
+</html>

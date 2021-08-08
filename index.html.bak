@@ -1,133 +1,118 @@
 <!DOCTYPE html>
 <!--
-	Massively by HTML5 UP	html5up.net | @ajlkn	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)-->
+	Solid State by HTML5 UP	html5up.net | @ajlkn	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)-->
 <html>
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
-    <title>Nuno Lopes - Data Analyst</title>
+    <title>Nuno Lopes-Data Analyst</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <link rel="stylesheet" href="assets/css/main.css">
     <noscript><link rel="stylesheet" href="assets/css/noscript.css"></noscript>
   </head>
   <body class="is-preload">
-    <!-- Wrapper -->
-    <div id="wrapper" class="fade-in">
-      <!-- Intro -->
-      <div id="intro"><br>
-        <h1>Nuno Lopes</h1>
-        <p>Data Analyst</p>
-        <ul class="actions">
-          <li><a href="#header" class="button icon solid solo fa-arrow-down scrolly">Continue</a></li>
-        </ul>
-      </div>
+    <!-- Page Wrapper -->
+    <div id="page-wrapper">
       <!-- Header -->
-      <header id="header"> <a href="index.html" class="logo">Portfolio</a> </header>
-      <!-- Nav -->
-      <nav id="nav">
-        <ul class="links">
-          <li class="active"><a href="index.html">Portfolio</a></li>
-          <li><a href="about.html">About</a></li>
-        </ul>
-        <ul class="icons">
-          <li><a href="https://www.linkedin.com/in/njlopes/" class="icon brands fa-linkedin"><span
-
-                class="label">LinkedIN</span></a></li>
-          <li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
-        </ul>
+      <header id="header" class="alt">
+        <h1><a href="index.html">Nuno Lopes</a></h1>
+        <nav> <a href="#menu">Menu</a> </nav>
+      </header>
+      <!-- Menu -->
+      <nav id="menu">
+        <div class="inner">
+          <h2>Menu</h2>
+          <ul class="links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="about.html">About</a></li>
+          </ul>
+          <a href="#" class="close">Close</a> </div>
       </nav>
-      <!-- Main -->
-      <div id="main">
-        <!-- Featured Post -->
-        <!-- Posts -->
-        <section class="posts">
-          <article>
-            <header>
-              <h2><a href="#">Data Analyst<br>
-                  Sales management</a></h2>
-            </header>
-            <a href="da1_project.html" class="image fit"><img src="images/aw_1.jpg" alt=""></a>
-            <p>The business request for this project was to prepare a sales
-              report for sales managers and sales representatives. Based on the
-              request the necessary User Stories ...</p>
-            <ul class="actions special">
-              <li><a href="da1_project.html" class="button">Check it out</a></li>
-            </ul>
-          </article>
-          <article>
-            <header>
-              <h2><a href="#">ETL Process with Python Pandas<br>
-                </a></h2>
-            </header>
-            <a href="de1_project2.html" class="image fit"><img src="images/DE1_etl.jpg" alt=""></a>
-            <p>Donec eget ex magna. Interdum et malesuada fames ac ante ipsum
-              primis in faucibus. Pellentesque venenatis dolor imperdiet dolor
-              mattis sagittis magna etiam.</p>
-            <ul class="actions special">
-              <li><a href="de1_project2.html" class="button">Check it out</a></li>
-            </ul>
-          </article>
-          <article>
-            <header>
-              <h2><a href="#">Ante mattis<br>
-                  interdum dolor</a></h2>
-            </header>
-            <a href="#" class="image fit"><img src="images/pic04.jpg" alt=""></a>
-            <p>Donec eget ex magna. Interdum et malesuada fames ac ante ipsum
-              primis in faucibus. Pellentesque venenatis dolor imperdiet dolor
-              mattis sagittis magna etiam.</p>
-            <ul class="actions special">
-              <li><a href="#" class="button">Check it out</a></li>
-            </ul>
-          </article>
-          <article>
-            <header>
-              <h2><a href="#">Tempus sed<br>
-                  nulla imperdiet</a></h2>
-            </header>
-            <a href="#" class="image fit"><img src="images/pic05.jpg" alt=""></a>
-            <p>Donec eget ex magna. Interdum et malesuada fames ac ante ipsum
-              primis in faucibus. Pellentesque venenatis dolor imperdiet dolor
-              mattis sagittis magna etiam.</p>
-            <ul class="actions special">
-              <li><a href="#" class="button">Check it out</a></li>
-            </ul>
-          </article>
-        </section>
-        <!-- Footer --> </div>
-      <!-- Footer -->
-      <footer id="footer">
-        <section class="split contact">
-          <section>
-            <h3>Email</h3>
-            <p><a href="mailto:nuno.j.lopes@outlook.com">nuno.j.lopes@outlook.com</a></p>
-          </section>
-          <section>
-            <h3>Social</h3>
-            <ul class="icons alt">
-              <li><a href="https://www.linkedin.com/in/njlopes/" class="icon brands alt fa-linkedin"><span
+      <!-- Banner -->
+      <section id="banner">
+        <div class="inner">
+          <div class="logo"><span class="icon fa-gem"></span></div>
+          <h2>Nuno Lopes</h2>
+          <p>Senior data analyst</p>
+        </div>
+      </section>
+      <!-- Wrapper -->
+      <section id="wrapper">
+        <!-- One -->
+        <section id="one" class="wrapper spotlight style1">
+          <div class="inner"> <a href="project_da1.html" class="image"><img src="images/aw_1_square.jpg"
 
-                    class="label">LinkedIN</span></a></li>
-              <li><a href="#" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
-            </ul>
-          </section>
+                alt=""></a>
+            <div class="content">
+              <h2 class="major">Sales management dashboard</h2>
+              <p>The business request for this project was to prepare a sales
+                report for sales managers and sales representatives. Based on
+                the request the necessary user stories were defined and these
+                must be followed to ensure the project is delivered accordingly.</p>
+              <a href="project_da1.html" class="special">Learn more</a> </div>
+          </div>
         </section>
-      </footer>
-      <!-- Copyright -->
-      <div id="copyright">
-        <ul>
-          <li>© <a href="mailto:nuno.j.lopes@outlook.com">nuno.j.lopes</a></li>
-          <li>Design: <a href="https://html5up.net">HTML5 UP</a></li>
+        <!-- Two -->
+        <section id="two" class="wrapper alt spotlight style2">
+          <div class="inner"> <a href="project_de1.html" class="image"><img src="images/de1_1_square.jpg"
+
+                alt=""></a>
+            <div class="content">
+              <h2 class="major">ETL process with python pandas</h2>
+              <p>Simple demonstration of an ETL (Extract Transform and Load)
+                process. This type of process allows us to quickly upload our
+                data to the database and have it ready for reporting in a
+                streamline manner.</p>
+              <a href="project_de1.html" class="special">Learn more</a> </div>
+          </div>
+        </section>
+        <!-- Three -->
+        <section id="three" class="wrapper spotlight style3">
+          <div class="inner"> <a href="project_da2.html" class="image"><img src="images/sql_2_square.jpg"
+
+                alt=""></a>
+            <div class="content">
+              <h2>Exploratory data analysis with T-SQL</h2>
+              <h2 class="major"></h2>
+              <p>Lorem ipsum dolor sit amet, etiam lorem adipiscing elit. Cras
+                turpis ante, nullam sit amet turpis non, sollicitudin posuere
+                urna. Mauris id tellus arcu. Nunc vehicula id nulla dignissim
+                dapibus. Nullam ultrices, neque et faucibus viverra, ex nulla
+                cursus.</p>
+              <a href="project_da2.html" class="special">Learn more</a>
+            </div>
+          </div>
+        </section>
+        <!-- Four -->
+        <section id="four" class="wrapper alt style1"> </section>
+        <ul class="actions">
+          <li><a href="projects.html" class="button">Browse All</a></li>
+        </ul>
+      </section>
+    </div>
+    <!-- Footer -->
+    <section id="footer">
+      <div class="inner">
+        <h2 class="major">Contacts</h2>
+        <ul class="contact">
+          <li class="icon solid fa-home"> Lisbon</li>
+          <li class="icon solid fa-phone">(351) 965-565-5351</li>
+          <li class="icon solid fa-envelope"><a href="mailto:nuno.j.lopes@outlook.com">nuno.j.lopes@outlook.com</a></li>
+          <li class="icon brands fa-github"><a href="#">guithub</a></li>
+          <li class="icon brands fa-facebook-f"><a href="https://www.facebook.com/nuno.lopes.520562">facebook.com/nuno.lopes.520562</a></li>
+        </ul>
+        <ul class="copyright">
+          <li>© Nuno Lopes. All rights reserved.</li>
+          <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
         </ul>
       </div>
-    </div>
+    </section>
     <!-- Scripts -->
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/jquery.scrollex.min.js"></script>
-    <script src="assets/js/jquery.scrolly.min.js"></script>
     <script src="assets/js/browser.min.js"></script>
     <script src="assets/js/breakpoints.min.js"></script>
     <script src="assets/js/util.js"></script>
     <script src="assets/js/main.js"></script>
-    
   </body>
 </html>

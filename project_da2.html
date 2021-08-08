@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<!--
+	Solid State by HTML5 UP	html5up.net | @ajlkn	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)-->
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <title>Nuno Lopes-Data Analyst</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <noscript><link rel="stylesheet" href="assets/css/noscript.css"></noscript>
+  </head>
+  <body class="is-preload">
+    <!-- Page Wrapper -->
+    <div id="page-wrapper">
+      <!-- Header -->
+      <header id="header">
+        <h1><a href="index.html">Nuno Lopes</a></h1>
+        <nav> <a href="#menu">Menu</a> </nav>
+      </header>
+      <!-- Menu -->
+      <nav id="menu">
+        <div class="inner">
+          <h2>Menu</h2>
+          <ul class="links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="projects.html">projects</a></li>
+            <li><a href="about.html">about</a></li>
+          </ul>
+          <a href="#" class="close">Close</a> </div>
+      </nav>
+      <!-- Wrapper -->
+      <section id="wrapper">
+        <header>
+          <div class="inner">
+            <h2>Exploratory data analysis with T-SQL</h2>
+            <p>Data exploration on a Covid-19 dataset by using transact-sql.</p>
+          </div>
+        </header>
+        <!-- Title pictures -->
+        <section>
+          <div class="wrapper">
+            <div class="inner">
+              <h3 class="major">Exploratory data analysis (EDA) with T-SQL</h3>
+              <div class="box alt">
+                <div class="row gtr-uniform">
+                  <div class="col-12"><span class="image fit"><img src="images/sql_1.jpg"
+
+                        alt=""></span></div>
+                  <div class="col-4"><span class="image fit"><img src="images/sql_2.jpg"
+
+                        alt=""></span></div>
+                  <div class="col-4"><span class="image fit"><img src="images/sql_3.jpg"
+
+                        alt=""></span></div>
+                  <div class="col-4"><span class="image fit"><img src="images/sql_4.jpg"
+
+                        alt=""></span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- Content -->
+        <div class="wrapper">
+          <div class="inner">
+
+            <h3 class="major">Dataset</h3>
+            <p>Coronavirus Pandemic (COVID-19)</p>
+            <p>Hannah Ritchie, Esteban Ortiz-Ospina, Diana Beltekian, Edouard
+              Mathieu, Joe Hasell, Bobbie Macdonald, Charlie Giattino, Cameron
+              Appel, Lucas Rodés-Guirao and Max Roser (2020) "Coronavirus
+              Pandemic (COVID-19)". Published online at OurWorldInData.org.
+              Retrieved from: 'https://ourworldindata.org/coronavirus' [Online
+              Resource]</p>
+            <h3 class="major">Data exploration</h3>
+            <p>Vestibulum ultrices risus velit, sit amet blandit massa auctor
+              sit amet. Sed eu lectus sem. Phasellus in odio at ipsum porttitor
+              mollis id vel diam. Praesent sit amet posuere risus, eu faucibus
+              lectus. Vivamus ex ligula, tempus pulvinar ipsum in, auctor porta
+              quam. Proin nec commodo, vel scelerisque nisi scelerisque.
+              Suspendisse id quam vel tortor tincidunt suscipit. Nullam auctor
+              orci eu dolor consectetur, interdum ullamcorper ante tincidunt.
+              Mauris felis nec felis elementum varius.</p>
+            <h4>SQL code</h4>
+            <pre><code>-- Quick view of the tables we have available
+
+SELECT * 
+FROM Coronavirus.dbo.covid_deaths
+WHERE continent IS NOT NULL
+ORDER BY [location], [date]
+
+SELECT * 
+FROM Coronavirus.dbo.covid_vaccination
+WHERE continent IS NOT NULL
+ORDER BY [location], [date]
+
+SELECT * 
+FROM Coronavirus.dbo.indicators
+WHERE continent IS NOT NULL
+ORDER BY [location], [date]
+
+-- TOTAL INFECTED CASES VS TOTAL COVID DEATHS
+-- Express mortality as a percentage in the event of contracting Covid-19 in Portugal
+DECLARE @country AS VARCHAR(50) = 'Portugal'
+
+SELECT [location], [date], total_cases, total_deaths
+    , CAST(ROUND((total_deaths/total_cases) * 100,4) AS NUMERIC(12,4)) AS [mortality_(%)]
+FROM Coronavirus.dbo.covid_deaths
+WHERE [location] = 'Portugal'
+ORDER BY [location], [date]
+
+-- TOTAL INFECTED CASES VS POPULATION
+-- Express the population infection rate in percentage
+SELECT 
+      [location]
+    , [date]
+    , total_cases, [population]
+    , CAST((total_cases/[population]) * 100 AS NUMERIC(12,4)) AS [cases_(%)]
+FROM Coronavirus.dbo.covid_deaths
+WHERE [location] = 'Portugal'
+ORDER BY [location], [date]
+
+-- TOTAL CASES BY COUNTRY VS COUNTRY POPULATION
+-- Countries with highest number of infected cases compared to population
+SELECT <br>      [location]
+    , [population]
+    , MAX(total_cases) AS total_infected_cases
+    , CAST(MAX((total_cases/[population])) * 100 AS NUMERIC(12,4)) AS [population_infected_(%)]
+FROM Coronavirus.dbo.covid_deaths
+GROUP BY [location], [population]
+ORDER BY [population_infected_(%)] DESC
+
+-- TOTAL DEATHS BY COUNTRY
+-- Countries with highest death count by population            
+SELECT <br>      [location]
+    , CAST(MAX(total_deaths) AS NUMERIC(12,0)) AS total_deaths
+FROM Coronavirus.dbo.covid_deaths
+WHERE continent IS NOT NULL
+GROUP BY Location
+ORDER BY total_deaths DESC
+
+-- TOTAL DEATHS BY COUNTRY VS POPULATION
+-- Countries with highest death percentage when comparing to the countries own population 
+SELECT<br>      [location], [population]
+    , CAST(MAX(total_deaths) AS NUMERIC(12,0)) AS total_deaths
+    , CAST((MAX(total_deaths)/[population]) * 100 AS NUMERIC(12,4)) AS [country_covid_deaths_(%)]
+FROM Coronavirus.dbo.covid_deaths
+WHERE continent IS NOT NULL
+GROUP BY Location, [population]
+ORDER BY [country_covid_deaths_(%)] DESC
+
+-- DRILL DOWN BY CONTINENT
+SELECT 
+      [location] AS continent
+    , CAST(SUM(new_deaths) AS INT) AS [total_deaths]
+FROM Coronavirus.dbo.covid_deaths
+WHERE continent IS NULL AND [location] NOT IN ('World', 'European Union', 'International')
+GROUP BY [location]
+ORDER BY [total_deaths] DESC
+
+SELECT 
+      [location] AS continent
+    , CAST(SUM(new_cases) AS INT) AS continent_total_cases
+    , CAST(SUM(new_deaths) AS INT) AS [continent_total_deaths]
+    , CAST(SUM(new_deaths)/SUM(new_cases) * 100 AS NUMERIC(12,4)) AS [continent_deaths_(%)]    
+FROM Coronavirus.dbo.covid_deaths
+WHERE continent IS NULL AND [location] NOT IN ('World', 'European Union', 'International')
+GROUP BY [location]
+ORDER BY [continent_total_deaths] DESC
+
+-- GLOBAL NUMBERS
+SELECT 
+      CAST([date] AS DATE) AS [date]
+    , CAST(SUM(new_cases) AS INT) AS total_cases
+    , CAST(SUM(new_deaths) AS INT) AS total_deaths
+    , CAST(SUM(new_deaths)/SUM(new_cases) * 100 AS NUMERIC(12,4)) AS [death_(%)]
+FROM Coronavirus.dbo.covid_deaths
+WHERE continent IS NOT NULL
+GROUP BY [date]
+ORDER BY [date], total_cases
+
+SELECT 
+      CAST(SUM(new_cases) AS INT) AS world_total_cases
+    , CAST(SUM(new_deaths) AS INT) AS world_total_deaths
+    , CAST(SUM(new_deaths)/SUM(new_cases) * 100 AS NUMERIC(12,4)) AS [world_death_(%)]
+FROM Coronavirus.dbo.covid_deaths
+WHERE continent IS NOT NULL
+
+-- TOTAL POPULATION VS VACCINATIONS
+-- Expresses the agregated daily vaccination for people that has received at least one vaccine and compares it to the total population
+SELECT 
+      d.continent
+    , d.[location]
+    , CAST(d.[date] AS DATE) AS [date]
+    , CAST(d.population AS NUMERIC(18,0)) AS [population]
+    , CAST(v.new_vaccinations AS NUMERIC(12,0)) AS new_vaccinations
+    , CAST(SUM(v.new_vaccinations) OVER (PARTITION BY d.location ORDER BY d.location, d.date) AS NUMERIC(18,0)) AS agregated_vaccinations
+FROM Coronavirus.dbo.covid_deaths AS d
+JOIN Coronavirus.dbo.covid_vaccination AS v
+    ON d.[location] = v.[location] AND d.[date] = v.[date]
+WHERE d.continent IS NOT NULL AND d.[location] = 'Portugal'
+ORDER BY d.continent,d.[location],d.[date]
+
+-- Using a CTE to obtain the percentage on the aggregated vaccination
+WITH popvsvac (continent, [location], [date], [population], new_vaccinations, aggregated_vaccinations)
+AS (
+    SELECT <br>	  d.continent, d.[location]
+        , CAST(d.[date] AS DATE) AS [date]
+        , CAST(d.population AS NUMERIC(18,0)) AS [population]
+        , CAST(v.new_vaccinations AS NUMERIC(12,0)) AS new_vaccinations
+        , CAST(SUM(v.new_vaccinations) OVER (PARTITION BY d.location ORDER BY d.location, d.date) AS NUMERIC(18,0)) AS agregated_vaccinations
+    FROM Coronavirus.dbo.covid_deaths AS d
+    JOIN Coronavirus.dbo.covid_vaccination AS v
+        ON d.[location] = v.[location] AND d.[date] = v.[date]
+    WHERE d.continent IS NOT NULL
+    )
+SELECT * 
+    , CAST(aggregated_vaccinations/[population] * 100 AS NUMERIC(12,4)) AS [aggregated_vaccinations_(%)]
+FROM popvsvac;
+
+-- Using a sub query to obtain the same result as above
+SELECT <br>      s.*
+    , CAST(s.aggregated_vaccinations/s.[population] * 100 AS NUMERIC(12,4)) AS [aggregated_vaccinations_(%)]
+FROM Coronavirus.dbo.covid_deaths AS d
+JOIN (
+        SELECT <br>	  d.continent, d.[location]
+        , CAST(d.[date] AS DATE) AS [date]
+        , CAST(d.population AS NUMERIC(18,0)) AS [population]
+        , CAST(v.new_vaccinations AS NUMERIC(12,0)) AS new_vaccinations
+        , CAST(SUM(v.new_vaccinations) OVER (PARTITION BY d.location ORDER BY d.location, d.date) AS NUMERIC(18,0)) AS agregated_vaccinations
+    FROM Coronavirus.dbo.covid_deaths AS d
+    JOIN Coronavirus.dbo.covid_vaccination AS v
+        ON d.[location] = v.[location] AND d.[date] = v.[date]
+    WHERE d.continent IS NOT NULL
+    ) AS s
+    ON d.[location] = s.[location] AND d.[date] = s.[date]
+
+
+-- Create Views with specific information for vizualizations
+-- The information on these tables will be automatically refreshed once new data is loaded into SQL SERVER
+
+-- 1. GLOBAL NUMBERS
+-- World Covid-19 death toll
+CREATE VIEW v_global_deaths AS
+    SELECT 
+          CAST(SUM(new_cases) AS INT) AS world_total_cases
+        , CAST(SUM(new_deaths) AS INT) AS world_total_deaths
+        , CAST(SUM(new_deaths)/SUM(new_cases) * 100 AS NUMERIC(12,4)) AS [world_deaths_(%)]
+    FROM Coronavirus.dbo.covid_deaths
+    WHERE continent IS NOT NULL
+
+
+-- 2. CONTINENT NUMBERS
+-- Covid-19 death toll by continent
+CREATE VIEW v_continent_deaths AS
+    SELECT 
+          [location]
+        , CAST(SUM(new_cases) AS INT) AS continent_total_cases
+        , CAST(SUM(new_deaths) AS INT) AS [continent_total_deaths]
+        , CAST(SUM(new_deaths)/SUM(new_cases) * 100 AS NUMERIC(12,4)) AS [continent_deaths_(%)]    
+    FROM Coronavirus.dbo.covid_deaths
+    WHERE continent IS NULL AND [location] NOT IN ('World', 'European Union', 'International')
+    GROUP BY [location]
+
+-- 3. TOTAL CASES BY COUNTRY VS COUNTRY POPULATION
+-- Countries summary of highest number of infected cases compared to population
+CREATE VIEW v_country_infection AS
+    SELECT 
+          [location]
+        , CAST([population] AS NUMERIC(12,0)) AS [population]
+        , CAST(MAX(total_cases) AS INT) AS total_infected_cases
+        , CAST(MAX((total_cases/[population])) * 100 AS NUMERIC(12,4)) AS [population_infected_(%)]
+    FROM Coronavirus.dbo.covid_deaths
+    GROUP BY [location], [population]
+
+-- 4. TOTAL CASES BY COUNTRY VS COUNTRY POPULATION
+-- Countries population infection rate by date
+CREATE VIEW v_country_infection_details AS
+    SELECT 
+          [location]
+        , CAST([date] AS DATE) AS [date]
+        , CAST([population] AS NUMERIC(12,0)) AS [population]
+        , CAST(MAX(total_cases) AS INT) AS total_infected_cases
+        , CAST(MAX((total_cases/[population])) * 100 AS NUMERIC(12,4)) AS [population_infected_(%)]
+    FROM Coronavirus.dbo.covid_deaths
+    GROUP BY [location], [population], [date]</code></pre>
+            <h3 class="major">Linked projects</h3>
+            <p>Cras mattis ante fermentum, malesuada neque vitae, eleifend erat.
+              Phasellus non pulvinar erat. Fusce tincidunt, nisl eget mattis
+              egestas, purus ipsum consequat orci, sit amet lobortis lorem lacus
+              in tellus. Sed ac elementum arcu. Quisque placerat auctor laoreet.</p>
+            <section class="features">
+              <article> <a href="#" class="image"><img src="images/pic04.jpg" alt=""></a>
+                <h3 class="major">Sed feugiat lorem</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing vehicula
+                  id nulla dignissim dapibus ultrices.</p>
+                <a href="#" class="special">Learn more</a> </article>
+              <article> <a href="#" class="image"><img src="images/pic05.jpg" alt=""></a>
+                <h3 class="major">Nisl placerat</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing vehicula
+                  id nulla dignissim dapibus ultrices.</p>
+                <a href="#" class="special">Learn more</a> </article>
+            </section>
+          </div>
+        </div>
+      </section>
+      <!-- Footer -->
+      <section id="footer">
+        <div class="inner">
+          <h2 class="major">Contacts</h2>
+          <p>Cras mattis ante fermentum, malesuada neque vitae, eleifend erat.
+            Phasellus non pulvinar erat. Fusce tincidunt, nisl eget mattis
+            egestas, purus ipsum consequat orci, sit amet lobortis lorem lacus
+            in tellus. Sed ac elementum arcu. Quisque placerat auctor laoreet.</p>
+          <ul class="contact">
+            <li class="icon solid fa-home"> Lisbon</li>
+            <li class="icon solid fa-phone">(351) 965-565-5351</li>
+            <li class="icon solid fa-envelope"><a href="mailto:nuno.j.lopes@outlook.com">nuno.j.lopes@outlook.com</a></li>
+            <li class="icon brands fa-github"><a href="#">guithub</a></li>
+            <li class="icon brands fa-facebook-f"><a href="https://www.facebook.com/nuno.lopes.520562">facebook.com/nuno.lopes.520562</a></li>
+          </ul>
+          <ul class="copyright">
+            <li>© Untitled Inc. All rights reserved.</li>
+            <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+          </ul>
+        </div>
+      </section>
+    </div>
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+  </body>
+</html>
