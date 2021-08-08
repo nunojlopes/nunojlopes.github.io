@@ -59,12 +59,6 @@
         <!-- Content -->
         <div class="wrapper">
           <div class="inner">
-            <h3 class="major">Text</h3>
-            <p>This is <b>bold</b> and this is <strong>strong</strong>. This
-              is <i>italic</i> and this is <em>emphasized</em>. This is <sup>superscript</sup>
-              text and this is <sub>subscript</sub> text. This is <u>underlined</u>
-              and this is code: <code>for (;;) { ... }</code>. Finally, <a href="#">this
-                is a link</a>.</p>
             <h3 class="major">Dataset</h3>
             <p>Coronavirus Pandemic (COVID-19)</p>
             <p>Hannah Ritchie, Esteban Ortiz-Ospina, Diana Beltekian, Edouard
@@ -292,14 +286,10 @@ CREATE VIEW v_country_infection_details AS
               in tellus. Sed ac elementum arcu. Quisque placerat auctor laoreet.</p>
             <section class="features">
               <article> <a href="#" class="image"><img src="images/pic04.jpg" alt=""></a>
-                <h3 class="major">Sed feugiat lorem</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing vehicula
-                  id nulla dignissim dapibus ultrices.</p>
+                <h3 class="major">ETL project with Python Pandas</h3>
                 <a href="#" class="special">Learn more</a> </article>
               <article> <a href="#" class="image"><img src="images/pic05.jpg" alt=""></a>
                 <h3 class="major">Nisl placerat</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing vehicula
-                  id nulla dignissim dapibus ultrices.</p>
                 <a href="#" class="special">Learn more</a> </article>
             </section>
           </div>
