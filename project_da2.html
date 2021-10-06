@@ -72,14 +72,8 @@
               Retrieved from: 'https://ourworldindata.org/coronavirus' [Online
               Resource]</p>
             <h3 class="major">Data exploration</h3>
-            <p>Vestibulum ultrices risus velit, sit amet blandit massa auctor
-              sit amet. Sed eu lectus sem. Phasellus in odio at ipsum porttitor
-              mollis id vel diam. Praesent sit amet posuere risus, eu faucibus
-              lectus. Vivamus ex ligula, tempus pulvinar ipsum in, auctor porta
-              quam. Proin nec commodo, vel scelerisque nisi scelerisque.
-              Suspendisse id quam vel tortor tincidunt suscipit. Nullam auctor
-              orci eu dolor consectetur, interdum ullamcorper ante tincidunt.
-              Mauris felis nec felis elementum varius.</p>
+            <p>Exploratory Data Analysis is the process of Descriptive Data Analytics that will let you know what has happened with our data in the past.</p>
+            <p> We need to understand the data availabe and we will need to perform this type of analysis to understand what the data may hold and how we can extract meaningfull information from it to further help the team to meet business target or enhance KPI (Key Performance Indicators).</p>
             <h4>SQL code</h4>
             <pre><code>-- Quick view of the tables we have available
 
@@ -283,6 +277,18 @@ CREATE VIEW v_country_infection_details AS
         , CAST(MAX((total_cases/[population])) * 100 AS NUMERIC(12,4)) AS [population_infected_(%)]
     FROM Coronavirus.dbo.covid_deaths
     GROUP BY [location], [population], [date]</code></pre>
+    <h3 class="major">Conclusion</h3>
+    <p>We have performed a series of queries that have allowed us to better understand the data set and selected 4 of them that were set up as SQL Data Views.</p>
+    <p>These views contain specific information for vizualizations and the information on these tables can be automatically refreshed once new data is loaded into SQL SERVER, as you can see on the previous project called <b>ETL project with Python Pandas</b>.</p>
+    <h4>Views cretaed in SQL Server</h4>
+    <ol>
+      <li>Global numbers - World Covid-19 death toll</li>
+      <li>Continent numbers - Covid-19 death toll by continent</li>
+      <li>Total cases by country vs population - Countries summary of highest number of infected cases compared to population</li>
+      <li>Infection rate by country vs population - Countries population infection rate by date</li>
+    </ol>
+    <p>At this point, we can either link our database or export our data in csv files to be imported into a data visualization tool.</p>
+
             <h3 class="major">Linked projects</h3>
             <section class="features">
               <article> <a href="project_de1.html" class="image"><img src="images/de1_1.jpg" alt=""></a>
@@ -295,28 +301,22 @@ CREATE VIEW v_country_infection_details AS
           </div>
         </div>
       </section>
-      <!-- Footer -->
       <section id="footer">
         <div class="inner">
           <h2 class="major">Contacts</h2>
-          <p>Cras mattis ante fermentum, malesuada neque vitae, eleifend erat.
-            Phasellus non pulvinar erat. Fusce tincidunt, nisl eget mattis
-            egestas, purus ipsum consequat orci, sit amet lobortis lorem lacus
-            in tellus. Sed ac elementum arcu. Quisque placerat auctor laoreet.</p>
           <ul class="contact">
             <li class="icon solid fa-home"> Lisbon</li>
             <li class="icon solid fa-phone">(351) 965-565-5351</li>
             <li class="icon solid fa-envelope"><a href="mailto:nuno.j.lopes@outlook.com">nuno.j.lopes@outlook.com</a></li>
-            <li class="icon brands fa-github"><a href="#">guithub</a></li>
+            <li class="icon brands fa-github"><a href="https://github.com/nunojlopes">guithub</a></li>
             <li class="icon brands fa-facebook-f"><a href="https://www.facebook.com/nuno.lopes.520562">facebook.com/nuno.lopes.520562</a></li>
           </ul>
           <ul class="copyright">
-            <li>© Untitled Inc. All rights reserved.</li>
+            <li>© Nuno Lopes. All rights reserved.</li>
             <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
           </ul>
         </div>
       </section>
-    </div>
     <!-- Scripts -->
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/jquery.scrollex.min.js"></script>
