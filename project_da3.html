@@ -68,7 +68,7 @@
               Retrieved from: 'https://ourworldindata.org/coronavirus' [Online
               Resource]</p>
             <h3 class="major">Data Preparation</h3>
-            <p>Since I haven't liked our database directely with Tableau, I have prepared the following code in Python that will pull the data for our vizualization from SQL Server so we can import it to Tableau.</p>
+            <p>Our database isn't directely linked with Tableau, so I have prepared the following code in Python that will pull the data for our vizualization from SQL Server so we can import it to Tableau.</p>
             <h4>Python code</h4>
             <pre><code>#Import the necessary packages
 import os
@@ -104,24 +104,33 @@ table_3.to_excel('3_country_infection.xlsx', sheet_name='country_infection', ind
 table_4.to_excel('4_country_infection_details.xlsx', sheet_name='country_infection_details', index = False)</code></pre>
 
             <h3 class="major">Data Vizualization</h3>
-            <p>some notes</p>
+            <p>Our vizualization is based on the 4 queries made before and we have the following information displayed.</p>
+            <h4>Vizualization created in Tableau</h4>
+            <ol>
+              <li>Global World Covid-19 death toll - We have express the percentage of deaths for those who are infected.</li>
+              <li>Covid-19 total death toll by continent, now viewed in a bar chart.</li>
+              <li>Countries summary of highest number of infected cases compared to population, viewed in a map.</li>
+              <li>Infection rate by country with a time line and a prediction made to where the covid-19 should evold at that point in time.</li>
+            </ol>
+
             <!--Vizualization script from tableau-->
             <h3 class="major">Tableau</h3>
             <div class='tableauPlaceholder' id='viz1633553694068' style='position: relative'><noscript><a href='#'><img alt='Dashboard ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Co&#47;Coviddatavizualization&#47;Dashboard&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='Coviddatavizualization&#47;Dashboard' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Co&#47;Coviddatavizualization&#47;Dashboard&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en-US' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1633553694068');                    var vizElement = divElement.getElementsByTagName('object')[0];                    if ( divElement.offsetWidth > 800 ) { vizElement.style.minWidth='420px';vizElement.style.maxWidth='1150px';vizElement.style.width='100%';vizElement.style.minHeight='587px';vizElement.style.maxHeight='787px';vizElement.style.height=(divElement.offsetWidth*0.75)+'px';} else if ( divElement.offsetWidth > 500 ) { vizElement.style.minWidth='420px';vizElement.style.maxWidth='1150px';vizElement.style.width='100%';vizElement.style.minHeight='587px';vizElement.style.maxHeight='787px';vizElement.style.height=(divElement.offsetWidth*0.75)+'px';} else { vizElement.style.width='100%';vizElement.style.height='1077px';}                     var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
- 
+            <p></p>
+            <h3 class="major">Conclusion</h3>
+            <p>This isn't an extensive analysis on the covid pandemic, but it allows us to take a quick gasp on the numbers involved in the pandemic. We can see clearly the mortality rate globaly and by continent. In a simple gance we can see the most affected countries in the map which is very intuitive. The last chart let us take a look at the progression of the desease and also gives us an idea on how it could progress.</p>
+            <p>An interesting analysis, since this is frozen in time (July 2021) is to compare the actual results with the prediction made on the last vizualization and see how the prediction fair with the actual results.</p>
+
+
             <p></p>
             <h3 class="major">Linked projects</h3>
             <section class="features">
-              <article> <a href="#" class="image"><img src="images/pic04.jpg" alt=""></a>
-                <h3 class="major">Sed feugiat lorem</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing vehicula
-                  id nulla dignissim dapibus ultrices.</p>
-                <a href="#" class="special">Learn more</a> </article>
-              <article> <a href="#" class="image"><img src="images/pic05.jpg" alt=""></a>
-                <h3 class="major">Nisl placerat</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing vehicula
-                  id nulla dignissim dapibus ultrices.</p>
-                <a href="#" class="special">Learn more</a> </article>
+              <article> <a href="project_de1.html" class="image"><img src="images/de1_1.jpg" alt=""></a>
+                <h3 class="major">ETL project with Python Pandas</h3>
+                <a href="project_de1.html" class="special">Learn more</a> </article>
+              <article> <a href="project_da2.html" class="image"><img src="images/sql_1.jpg" alt=""></a>
+                <h3 class="major">EXPLORATORY DATA ANALYSIS WITH T-SQL</h3>
+                <a href="project_da2.html" class="special">Learn more</a> </article>
             </section>
           </div>
         </div>
